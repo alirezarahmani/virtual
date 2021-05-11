@@ -1,0 +1,18 @@
+version: '3'
+services:
+  worker:
+    build: ./DockerFiles/Worker
+    ports:
+      - 0.0.0.0:8000:80
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    volumes:
+      - ${LOCAL_DEV_DIR}:/var/www
+  mysql:
+    build: ./DockerFiles/Mysql
+    ports:
+      - 0.0.0.0:3309:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
