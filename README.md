@@ -9,6 +9,8 @@ run following commands in order:
 > 
 > make start 
 > 
+> make composer-install
+> 
 > make create-db
 > 
 > make update-schema
