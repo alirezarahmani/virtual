@@ -37,7 +37,7 @@ class ExerciseInstances
     public $order = 0;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Exercise::class, inversedBy="exerciseItems")
+     * @ORM\ManyToOne(targetEntity=Exercise::class, inversedBy="exerciseItems", cascade={"remove"})
      */
     public $exercise;
 

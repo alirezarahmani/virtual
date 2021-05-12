@@ -32,12 +32,12 @@ class Exercise
     public $exerciseName;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Plan::class, inversedBy="exercise")
+     * @ORM\ManyToOne(targetEntity=Plan::class, inversedBy="exercise", cascade={"remove"})
      */
     public $plan;
 
     /**
-     * @ORM\OneToMany(targetEntity=ExerciseInstances::class, mappedBy="exercise")
+     * @ORM\OneToMany(targetEntity=ExerciseInstances::class, mappedBy="exercise", cascade={"remove"})
      */
     public $exerciseItems;
 
