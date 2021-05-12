@@ -1,3 +1,0 @@
-App\Entity\PlanDays:
-    planDays_{1..10}:
-      dayName: <name()>

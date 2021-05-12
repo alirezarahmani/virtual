@@ -6,7 +6,6 @@ ENV TERM xterm
 
 RUN apt-get update --fix-missing && apt-get install -y --force-yes curl sudo vim
 RUN apt-get install -y --force-yes wget apt-transport-https lsb-release ca-certificates
-#RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 
 RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
 RUN echo "deb http://ftp.uk.debian.org/debian buster-backports main" >> /etc/apt/sources.list
@@ -16,22 +15,21 @@ RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt
 
 RUN DEBIAN_FRONTEND="noninteractive" apt-get update && apt-get install -y --force-yes \
     nginx \
-    php7.4 \
-    php7.4-cli \
-    php7.4-fpm \
-    php7.4-curl \
-    php7.4-json \
-    php7.4-xml \
-    php7.4-mysql \
-    php7.4-intl \
-    php7.4-redis \
-    php7.4-redis \
+    php8.0 \
+    php8.0-cli \
+    php8.0-fpm \
+    php8.0-curl \
+    php8.0-xml \
+    php8.0-mysql \
+    php8.0-intl \
+    php8.0-redis \
+    php8.0-redis \
     zip \
-    php7.4-mbstring \
+    php8.0-mbstring \
     git \
     openssh-server
 
-RUN sed -i 's/^;*clear_env = .*/clear_env = no/' /etc/php/7.4/fpm/pool.d/www.conf
+RUN sed -i 's/^;*clear_env = .*/clear_env = no/' /etc/php/8.0/fpm/pool.d/www.conf
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 
@@ -58,12 +56,12 @@ ADD docker-entrypoint.sh /usr/bin/docker-entrypoint
 RUN chmod +x /usr/bin/docker-entrypoint
 RUN sed -i 's/^user  nginx;/user  www-data;/' /etc/nginx/nginx.conf
 
-RUN sed -i "s/\(max_execution_time *= *\).*/\1180/" /etc/php/7.4/fpm/php.ini
-RUN sed -i "s/\(upload_max_filesize *= *\).*/\1100M/" /etc/php/7.4/fpm/php.ini
-RUN sed -i "s/\(post_max_size *= *\).*/\1100M/" /etc/php/7.4/fpm/php.ini
-RUN sed -i "s/\(^.*max_input_vars *= *\).*/max_input_vars = 10000/" /etc/php/7.4/fpm/php.ini
-RUN sed -i "s/\(pm.max_children = 5\).*/\pm.max_children = 50/" /etc/php/7.4/fpm/pool.d/www.conf
-RUN sed -i "s/\(pm.max_spare_servers = 3\).*/\pm.max_spare_servers = 10/" /etc/php/7.4/fpm/pool.d/www.conf
+RUN sed -i "s/\(max_execution_time *= *\).*/\1180/" /etc/php/8.0/fpm/php.ini
+RUN sed -i "s/\(upload_max_filesize *= *\).*/\1100M/" /etc/php/8.0/fpm/php.ini
+RUN sed -i "s/\(post_max_size *= *\).*/\1100M/" /etc/php/8.0/fpm/php.ini
+RUN sed -i "s/\(^.*max_input_vars *= *\).*/max_input_vars = 10000/" /etc/php/8.0/fpm/php.ini
+RUN sed -i "s/\(pm.max_children = 5\).*/\pm.max_children = 50/" /etc/php/8.0/fpm/pool.d/www.conf
+RUN sed -i "s/\(pm.max_spare_servers = 3\).*/\pm.max_spare_servers = 10/" /etc/php/8.0/fpm/pool.d/www.conf
 RUN mkdir /root/.ssh/
 
 ADD default.conf /etc/nginx/conf.d/default.conf

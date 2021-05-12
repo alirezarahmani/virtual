@@ -1,6 +1,0 @@
-App\Entity\Plan:
-    plan_{1..10}:
-      planName: <name()>
-      planDescription: <text()>
-      users: ['@user*']
-      planDays: ['@planDays*']

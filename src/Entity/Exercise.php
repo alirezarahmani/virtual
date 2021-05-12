@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ApiResource()]
 /**
  * Exercise
- * @ApiResource()
  * @ORM\Table(name="exercise")
  * @ORM\Entity
  */
@@ -87,6 +87,4 @@ class Exercise
 
         return $this;
     }
-
-
 }

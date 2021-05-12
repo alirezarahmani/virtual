@@ -32,7 +32,7 @@ class ExerciseInstances
     /**
      * @var int
      *
-     * @ORM\Column(name="order", type="integer", nullable=false)
+     * @ORM\Column(name="in_order", type="integer", nullable=false)
      */
     public $order = 0;
 

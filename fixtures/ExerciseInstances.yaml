@@ -1,5 +1,0 @@
-App\Entity\ExerciseInstances:
-    exercisInstances_{1..10}:
-      exerciseDuration: 1
-      order: 1
-      exercise: '@exercise*'

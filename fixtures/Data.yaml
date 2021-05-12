@@ -1,0 +1,26 @@
+App\Entity\Plan:
+  plans{1..500}:
+    planName: <name()>
+    planDescription: <text()>
+    planDifficulty: <numberBetween(1, 50)>
+App\Entity\User:
+  user{1..500}:
+    name: <name()>
+    lastName: <name()>
+    email: <email()>
+    phone: <name()>
+    plan: '@plans*'
+App\Entity\Exercise:
+  exercies{1..500}:
+    exerciseName: <name()>
+    plan: "@plans*"
+App\Entity\PlanDays:
+  planDays{1..500}:
+    dayName: <name()>
+    order: <numberBetween(0, 20)>
+    plan: "@plans*"
+App\Entity\ExerciseInstances:
+  exercisInstancs{1..500}:
+    exerciseDuration: 1
+    order: <numberBetween(0, 20)>
+    exercise: '@exercies*'

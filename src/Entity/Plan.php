@@ -22,7 +22,7 @@ class Plan
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    public $id;
 
     /**
      * @var string
@@ -46,17 +46,17 @@ class Plan
     public $planDifficulty = 1;
 
     /**
-     * @ORM\OneToMany(targetEntity=Exercise::class, mappedBy="plan")
+     * @ORM\OneToMany(targetEntity=Exercise::class, mappedBy="plan", cascade={"remove"})
      */
     public $exercise;
 
     /**
-     * @ORM\OneToMany(targetEntity=PlanDays::class, mappedBy="plan")
+     * @ORM\OneToMany(targetEntity=PlanDays::class, mappedBy="plan", cascade={"remove"})
      */
     public $planDays;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="plan")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="plan",  cascade={"remove"})
      */
     public $users;
 

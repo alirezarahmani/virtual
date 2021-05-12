@@ -1,4 +1,0 @@
-App\Entity\Exercise:
-    exercise_{1..10}:
-      exerciseName: <name()>
-#      exerciseItems: ['@exercisInstances*']
