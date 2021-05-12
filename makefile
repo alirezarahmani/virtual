@@ -69,9 +69,25 @@ cli: ##@development get shell
 	$(DOCKER_COMPOSE) exec ${PROJECT_NAME} $(SHELL)
 .PHONY: cli
 
+create-db: ##@development create
+	$(DOCKER_COMPOSE) exec mysql  mysql -uroot -proot -e" create database virtualgym;"
+.PHONY: create-db
+
 composer-install: ##@development run composer install
 	$(CLI) composer install
 .PHONY: composer-install
+
+fixture-load: ##@development run load fixture
+	$(CLI)  php bin/console hautelook:fixtures:load
+.PHONY: fixture-load
+
+tests: ##@development run test
+	$(CLI)   php bin/phpunit
+.PHONY: tests
+
+update-schema: ##@development run schema update
+	$(CLI)  php bin/console doctrine:schema:update --force
+.PHONY: update-schema
 
 composer-update: ##@development run composer update
 	$(CLI) composer update
@@ -80,4 +96,3 @@ composer-update: ##@development run composer update
 composer-dump-autoload: ##@development run composer dump-autoload
 	$(CLI) composer dump-autoload -a
 .PHONY: composer-dump-autoload
-
